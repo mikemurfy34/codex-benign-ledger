@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Codex Benign – Public Proof Ledger</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body{font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;margin:24px;color:#0a0a0a}
+    .card{border:1px solid #e5e7eb;border-radius:16px;padding:16px 20px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+    .pill{font-size:12px;padding:4px 10px;border-radius:999px;background:#f3f4f6;display:inline-block}
+    .muted{color:#6b7280}.ok{color:#065f46}.bad{color:#7f1d1d}
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+    ul{padding-left:18px}
+    a{color:#2563eb;text-decoration:none}a:hover{text-decoration:underline}
+  </style>
+</head>
+<body>
+  <h1>Public Proof Ledger</h1>
+
+  <div class="card">
+    <div><strong>Ledger Source</strong></div>
+    <div class="muted">
+      <span id="src"></span> ·
+      <a id="folder" target="_blank" rel="noopener">proofs folder</a>
+    </div>
+  </div>
+
+  <div id="chain" class="card">
+    <div><strong>Chain Integrity</strong></div>
+    <div id="chainRow" class="muted">Loading…</div>
+  </div>
+
+  <div id="latest" class="card">
+    <div><strong>Latest Proof</strong></div>
+    <div id="latestRow" class="muted">Loading…</div>
+    <pre id="latestPre" class="mono muted" style="white-space:pre-wrap;overflow:auto;max-height:320px">Loading…</pre>
+  </div>
+
+  <div id="history" class="card">
+    <div><strong>Recent Proofs</strong></div>
+    <ul id="historyList" class="muted"><li>Loading…</li></ul>
+  </div>
+
+<script>
+const USER = "mikemurfy34";
+const REPO = "codex-benign-ledger";
+const RAW = `https://raw.githubusercontent.com/${USER}/${REPO}/main`;
+const LEDGER_URL = `${RAW}/audit/ledger.jsonl`;
+const PROOFS_URL = `https://github.com/${USER}/${REPO}/tree/main/audit/proofs`;
+
+document.getElementById('src').textContent = LEDGER_URL;
+document.getElementById('folder').href = PROOFS_URL;
+
+function sha256Hex(s){return crypto.subtle.digest('SHA-256', new TextEncoder().encode(s)).then(buf=>{
+  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+});}
+
+// Verify anchored chain client-side, return {ok, anchored, head, items}
+async function loadLedger(){
+  const res = await fetch(LEDGER_URL, {cache:'no-store'});
+  if(!res.ok) throw new Error("fetch ledger " + res.status);
+  const text = await res.text();
+  const lines = text.split(/\r?\n/).filter(Boolean);
+  const items = lines.map((l,i)=>{ try { return JSON.parse(l); } catch { throw new Error("bad JSON line "+(i+1)); } });
+
+  let prevHash = null, anchored = false, anchorHash = null;
+  for (let i=0;i<items.length;i++){
+    const rec = items[i];
+    if (!rec || !rec.proof || !rec.hash) throw new Error("malformed line " + (i+1));
+    const expected = await sha256Hex(JSON.stringify(rec.proof));
+    const hash = "sha256:" + expected;
+    if (rec.hash !== hash) throw new Error("hash mismatch line " + (i+1));
+    const thisPrev = rec.proof.prev_hash || null;
+    if (!anchored){
+      if (thisPrev !== null){
+        anchored = true;
+        anchorHash = rec.hash;
+        if (thisPrev !== prevHash) throw new Error("prev_hash mismatch at anchor line " + (i+1));
+      }
+    } else {
+      if (thisPrev !== prevHash) throw new Error("prev_hash mismatch line " + (i+1));
+    }
+    prevHash = rec.hash;
+  }
+  return { ok:true, anchored, head:prevHash, items };
+}
+
+(async function(){
+  const chainRow = document.getElementById('chainRow');
+  const latestRow = document.getElementById('latestRow');
+  const latestPre = document.getElementById('latestPre');
+  const historyList = document.getElementById('historyList');
+
+  try {
+    const { ok, anchored, head, items } = await loadLedger();
+    const len = items.length;
+    chainRow.innerHTML = (ok ? '<span class="ok">OK</span>' : '<span class="bad">FAIL</span>')
+      + (anchored ? ' <span class="pill">anchored</span>' : ' <span class="pill">unanchored</span>')
+      + ' <span class="muted">length ' + len + '</span> '
+      + (head ? '<span class="mono">' + head + '</span>' : '');
+
+    if (len){
+      const last = items[len-1];
+      const ts = last.proof && last.proof.created_at ? last.proof.created_at : '';
+      const hash = last.hash || '';
+      const overall = (last.proof && (last.proof.overall || last.proof.stats)) || null;
+      latestRow.innerHTML =
+        '<span class="mono">'+ hash +'</span> <span class="muted">'+ ts +'</span>'
+        + (overall ? ' · Brier ' + overall.brier_mean : '');
+      latestPre.textContent = JSON.stringify(last.proof, null, 2);
+    } else {
+      latestRow.textContent = 'No proofs yet.';
+      latestPre.textContent = '';
+    }
+
+    historyList.innerHTML = '';
+    const recent = items.slice(-10).reverse();
+    recent.forEach(it => {
+      const li = document.createElement('li');
+      li.innerHTML = '<span class="mono">'+ it.hash +'</span> '
+        + '<span class="muted">'+ (it.proof?.created_at || '') + '</span>';
+      historyList.appendChild(li);
+    });
+  } catch (e) {
+    chainRow.innerHTML = '<span class="bad">FAIL</span> <span class="muted">'+ e.message +'</span>';
+    latestRow.textContent = 'Error loading ledger';
+    latestPre.textContent = '';
+  }
+})();
+</script>
+</body>
+</html>

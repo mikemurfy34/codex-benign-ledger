@@ -1,0 +1,60 @@
+{
+  "proof": {
+    "type": "codex-benign-proof",
+    "version": 3,
+    "prev_hash": "sha256:cbbcb6103030209991b5b57bf7e583237fb464a7405e69fd8526ce4216ee12e3",
+    "created_at": "2025-08-13T00:45:21.747Z",
+    "model": "codex-v1",
+    "commit_sha": "28e86d47fdef34b485c9c25187b2231f8a897b59",
+    "repo": null,
+    "run_url": null,
+    "overall": {
+      "brier_mean": 0,
+      "count": 3,
+      "at": "2025-08-13T00:45:21.577Z"
+    },
+    "domains": {
+      "github": {
+        "stats": {
+          "brier_mean": 0,
+          "count": 1,
+          "at": "2025-08-13T00:45:18.762Z"
+        },
+        "truth": {
+          "github_current_user_url": true
+        }
+      },
+      "spacex": {
+        "stats": {
+          "brier_mean": 0,
+          "count": 1,
+          "at": "2025-08-13T00:45:20.546Z"
+        },
+        "truth": {
+          "spacex_company_name": true
+        }
+      },
+      "zen": {
+        "stats": {
+          "brier_mean": 0,
+          "count": 1,
+          "at": "2025-08-13T00:45:21.577Z"
+        },
+        "truth": {
+          "github_zen_nonempty": true
+        }
+      }
+    },
+    "stats": {
+      "brier_mean": 0,
+      "count": 3,
+      "at": "2025-08-13T00:45:21.577Z"
+    },
+    "truth": {
+      "github_current_user_url": true,
+      "spacex_company_name": true,
+      "github_zen_nonempty": true
+    }
+  },
+  "hash": "sha256:2b5ce09aed14765b57975bbf3173b22ffc71fe1cbf1d5a1ab6637de42c4f1145"
+}

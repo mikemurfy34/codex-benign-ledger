@@ -1,0 +1,102 @@
+{
+  "proof": {
+    "type": "codex-proof",
+    "version": 3,
+    "model": "codex-v1",
+    "created_at": "2025-08-12T05:07:42.075Z",
+    "prev_hash": "sha256:04c251f63bb2520440f800499796bdc72754fee755f6cb75f40545b3da8cc91b",
+    "provenance": {
+      "commit_sha": "c88494b8e31eff27fc546b4053c3afd410d58f69",
+      "repo": null,
+      "run_url": null
+    },
+    "domains": {
+      "benign": {
+        "overall": {
+          "brier_mean": 0,
+          "count": 3,
+          "at": "2025-08-12T05:07:41.938Z"
+        },
+        "domains": {
+          "github": {
+            "stats": {
+              "brier_mean": 0,
+              "count": 1,
+              "at": "2025-08-12T05:07:41.404Z"
+            },
+            "truth": {
+              "github_current_user_url": true
+            }
+          },
+          "spacex": {
+            "stats": {
+              "brier_mean": 0,
+              "count": 1,
+              "at": "2025-08-12T05:07:41.691Z"
+            },
+            "truth": {
+              "spacex_company_name": true
+            }
+          },
+          "zen": {
+            "stats": {
+              "brier_mean": 0,
+              "count": 1,
+              "at": "2025-08-12T05:07:41.938Z"
+            },
+            "truth": {
+              "github_zen_nonempty": true
+            }
+          }
+        },
+        "truth": {
+          "github_current_user_url": true,
+          "spacex_company_name": true,
+          "github_zen_nonempty": true
+        }
+      },
+      "macro": {
+        "rule": "fomc_rule_v1",
+        "result": {
+          "signal": "no_change",
+          "rationale": "no_state_file",
+          "truth": {
+            "macro_fomc_change_signal": false
+          }
+        },
+        "overall": {
+          "brier_mean": 0,
+          "count": 1,
+          "at": "2025-08-12T05:07:40.461Z"
+        },
+        "inputs": {
+          "fomc_state": null
+        },
+        "truth": {
+          "macro_fomc_change_signal": false
+        }
+      }
+    },
+    "overall": {
+      "brier_mean": 0,
+      "count": 4,
+      "at": "2025-08-12T05:07:41.987Z"
+    },
+    "model_compat": "codex-benign-v1",
+    "stats": {
+      "brier_mean": 0,
+      "count": 4,
+      "at": "2025-08-12T05:07:41.987Z"
+    },
+    "truth": {
+      "github_current_user_url": true,
+      "github_zen_nonempty": true,
+      "macro_fomc_change_signal": false,
+      "spacex_company_name": true
+    },
+    "commit_sha": "c88494b8e31eff27fc546b4053c3afd410d58f69",
+    "repo": null,
+    "run_url": null
+  },
+  "hash": "sha256:1c1a870e669acb5ed6712366bd6906ae840da9a5038a7f70cf0e2cbd96c34134"
+}

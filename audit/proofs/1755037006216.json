@@ -1,0 +1,118 @@
+{
+  "proof": {
+    "type": "codex-proof",
+    "version": 3,
+    "model": "codex-v1",
+    "created_at": "2025-08-12T22:16:46.216Z",
+    "prev_hash": "sha256:1b9bf1e7bb809943f907d2adcb54b9cbf86089b192d072cacb6ee60d1cfb9b03",
+    "provenance": {
+      "repo": "mikemurfy34/codex-v4.6",
+      "run_url": "https://github.com/mikemurfy34/codex-v4.6/actions/runs/16922201738"
+    },
+    "benign": {
+      "ok": true,
+      "stats": {
+        "brier_mean": 0,
+        "count": 3,
+        "at": "2025-08-12T22:16:46.195Z"
+      },
+      "truth": {
+        "github_current_user_url": true,
+        "spacex_company_name": true,
+        "github_zen_nonempty": true
+      },
+      "domains": {
+        "github": {
+          "stats": {
+            "brier_mean": 0,
+            "count": 1,
+            "at": "2025-08-12T22:16:45.980Z"
+          },
+          "truth": {
+            "github_current_user_url": true
+          }
+        },
+        "spacex": {
+          "stats": {
+            "brier_mean": 0,
+            "count": 1,
+            "at": "2025-08-12T22:16:46.155Z"
+          },
+          "truth": {
+            "spacex_company_name": true
+          }
+        },
+        "zen": {
+          "stats": {
+            "brier_mean": 0,
+            "count": 1,
+            "at": "2025-08-12T22:16:46.195Z"
+          },
+          "truth": {
+            "github_zen_nonempty": true
+          }
+        }
+      },
+      "overall": {
+        "brier_mean": 0,
+        "count": 3,
+        "at": "2025-08-12T22:16:46.195Z"
+      }
+    },
+    "macro": {
+      "ok": true,
+      "set": "macro",
+      "rule": "fomc_rule_v1",
+      "result": {
+        "signal": "cut",
+        "rationale": {
+          "infl_above": false,
+          "labor_soft": true,
+          "cooling_ok": true
+        },
+        "truth": {
+          "macro_fomc_change_signal": true
+        }
+      },
+      "stats": {
+        "brier_mean": 0,
+        "count": 1,
+        "at": "2025-08-12T22:16:46.201Z"
+      },
+      "truth": {
+        "macro_fomc_change_signal": true
+      },
+      "overall": {
+        "brier_mean": 0,
+        "count": 1,
+        "at": "2025-08-12T22:16:46.201Z"
+      },
+      "inputs": {
+        "fomc_state": {
+          "as_of": "2025-08-12T00:00:00Z",
+          "inflation_yoy": 2.6,
+          "inflation_target": 2,
+          "unemployment_rate": 4.6,
+          "nairu": 4,
+          "policy_rate": 5.25,
+          "last_move": {
+            "dir": "up",
+            "bp": 25,
+            "at": "2025-06-12"
+          },
+          "thresholds": {
+            "inflate_band": 0.75,
+            "labor_soft_band": 0.4,
+            "cooling_window_days": 45
+          }
+        }
+      }
+    },
+    "overall": {
+      "brier_mean": 0,
+      "count": 4,
+      "at": "2025-08-12T22:16:46.216Z"
+    }
+  },
+  "hash": "sha256:e901052ac5750356df925410a1f8db405c377bfebdab9a74857dc6bd079a937d"
+}

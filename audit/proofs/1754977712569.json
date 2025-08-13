@@ -1,0 +1,8 @@
+{
+  "proof": {
+    "type": "codex-benign-proof",
+    "version": 2,
+    "prev_hash": "sha256:8bf692c30742eff9458b695b9dcb4dfa2521d0ffb48ca2d08944ecd297a404f7"
+  },
+  "hash": "sha256:e412c98e640ddc1c917c4d0d222985dde6c65bca99af4c16d49c0f73b4020d8f"
+}

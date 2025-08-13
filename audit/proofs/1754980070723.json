@@ -1,0 +1,60 @@
+{
+  "proof": {
+    "type": "codex-benign-proof",
+    "version": 3,
+    "prev_hash": "sha256:5a572dcc9d950077c9bcb6756d29efdf29348017126f0a5c31e972544459bd78",
+    "created_at": "2025-08-12T06:27:50.723Z",
+    "model": "codex-v1",
+    "commit_sha": "d5b7b4a9bbbbd0aa20b2f749e125cafe033ee0c4",
+    "repo": "mikemurfy34/codex-v4.6",
+    "run_url": "https://github.com/mikemurfy34/codex-v4.6/actions/runs/16900856192",
+    "overall": {
+      "brier_mean": 0,
+      "count": 3,
+      "at": "2025-08-12T06:27:50.684Z"
+    },
+    "domains": {
+      "github": {
+        "stats": {
+          "brier_mean": 0,
+          "count": 1,
+          "at": "2025-08-12T06:27:50.527Z"
+        },
+        "truth": {
+          "github_current_user_url": true
+        }
+      },
+      "spacex": {
+        "stats": {
+          "brier_mean": 0,
+          "count": 1,
+          "at": "2025-08-12T06:27:50.645Z"
+        },
+        "truth": {
+          "spacex_company_name": true
+        }
+      },
+      "zen": {
+        "stats": {
+          "brier_mean": 0,
+          "count": 1,
+          "at": "2025-08-12T06:27:50.684Z"
+        },
+        "truth": {
+          "github_zen_nonempty": true
+        }
+      }
+    },
+    "stats": {
+      "brier_mean": 0,
+      "count": 3,
+      "at": "2025-08-12T06:27:50.684Z"
+    },
+    "truth": {
+      "github_current_user_url": true,
+      "spacex_company_name": true,
+      "github_zen_nonempty": true
+    }
+  },
+  "hash": "sha256:2d6417adba4279a77a0280f1acd57a8c8faae1950b09f481a313a00e061ea51f"
+}

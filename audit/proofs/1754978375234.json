@@ -1,0 +1,119 @@
+{
+  "proof": {
+    "type": "codex-proof",
+    "version": 3,
+    "model": "codex-v1",
+    "created_at": "2025-08-12T05:59:35.234Z",
+    "prev_hash": "sha256:e412c98e640ddc1c917c4d0d222985dde6c65bca99af4c16d49c0f73b4020d8f",
+    "provenance": {
+      "commit_sha": "9c6166de500ab67985835107c54b85d5afaa21c8",
+      "repo": "mikemurfy34/codex-v4.6",
+      "run_url": "https://github.com/mikemurfy34/codex-v4.6/actions/runs/16900341648"
+    },
+    "domains": {
+      "benign": {
+        "overall": {
+          "brier_mean": 0,
+          "count": 3,
+          "at": "2025-08-12T05:59:35.214Z"
+        },
+        "domains": {
+          "github": {
+            "stats": {
+              "brier_mean": 0,
+              "count": 1,
+              "at": "2025-08-12T05:59:35.011Z"
+            },
+            "truth": {
+              "github_current_user_url": true
+            }
+          },
+          "spacex": {
+            "stats": {
+              "brier_mean": 0,
+              "count": 1,
+              "at": "2025-08-12T05:59:35.163Z"
+            },
+            "truth": {
+              "spacex_company_name": true
+            }
+          },
+          "zen": {
+            "stats": {
+              "brier_mean": 0,
+              "count": 1,
+              "at": "2025-08-12T05:59:35.214Z"
+            },
+            "truth": {
+              "github_zen_nonempty": true
+            }
+          }
+        },
+        "truth": {
+          "github_current_user_url": true,
+          "spacex_company_name": true,
+          "github_zen_nonempty": true
+        }
+      },
+      "macro": {
+        "rule": "fomc_rule_v1",
+        "result": {
+          "signal": "no_change",
+          "rationale": "{\"infl_above\":false,\"labor_soft\":true,\"cooling_ok\":true}",
+          "truth": {
+            "macro_fomc_change_signal": false
+          }
+        },
+        "overall": {
+          "brier_mean": 0,
+          "count": 1,
+          "at": "2025-08-12T05:59:35.219Z"
+        },
+        "inputs": {
+          "fomc_state": {
+            "as_of": "2025-08-12T00:00:00Z",
+            "inflation_yoy": 2.6,
+            "inflation_target": 2,
+            "unemployment_rate": 4.6,
+            "nairu": 4,
+            "policy_rate": 5.25,
+            "last_move": {
+              "dir": "up",
+              "bp": 25,
+              "at": "2025-06-12"
+            },
+            "thresholds": {
+              "inflate_band": 0.75,
+              "labor_soft_band": 0.4,
+              "cooling_window_days": 45
+            }
+          }
+        },
+        "truth": {
+          "macro_fomc_change_signal": false
+        }
+      }
+    },
+    "overall": {
+      "brier_mean": 0,
+      "count": 4,
+      "at": "2025-08-12T05:59:35.233Z"
+    },
+    "model_compat": "codex-benign-v1",
+    "stats": {
+      "brier_mean": 0,
+      "count": 4,
+      "at": "2025-08-12T05:59:35.233Z"
+    },
+    "truth": {
+      "github_current_user_url": true,
+      "github_zen_nonempty": true,
+      "macro_fomc_change_signal": false,
+      "spacex_company_name": true
+    },
+    "commit_sha": "9c6166de500ab67985835107c54b85d5afaa21c8",
+    "repo": "mikemurfy34/codex-v4.6",
+    "run_url": "https://github.com/mikemurfy34/codex-v4.6/actions/runs/16900341648"
+  },
+  "hash": "sha256:5a572dcc9d950077c9bcb6756d29efdf29348017126f0a5c31e972544459bd78"
+}

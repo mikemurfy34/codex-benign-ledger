@@ -1,0 +1,20 @@
+{
+  "proof": {
+    "type": "codex-benign-proof",
+    "version": 1,
+    "prev_hash": "sha256:2b819cb8e273ef18b9f45e8666cb2871db517c7abb369945d378a8138bb6ba07",
+    "created_at": "2025-08-11T06:14:23.616Z",
+    "model": "codex-benign-v1",
+    "stats": {
+      "brier_mean": 0,
+      "count": 3,
+      "at": "2025-08-11T06:14:23.593Z"
+    },
+    "truth": {
+      "github_current_user_url": true,
+      "spacex_company_name": true,
+      "github_zen_nonempty": true
+    }
+  },
+  "hash": "sha256:18341cb29969300044bbcc202cb8d00bfdc83ae8a48f5bfd103522f9f4e57e4c"
+}
